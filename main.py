@@ -14,15 +14,11 @@ def main() -> None:
 
     c: sqlite3.Cursor = conn.cursor()
     for row in c.execute(sql_str):
-        time_opt: typing.Optional[datetime.datetime] = None
         try:
             time: datetime.datetime = datetime.datetime.strptime(row[1], '%Y-%m-%dT%H:%M:%S')
-            time_opt = time
         except Exception as e:
             time: datetime.datetime = datetime.datetime.strptime(row[1], '%Y-%m-%d %H:%M:%S')
-            time_opt = time
 
-        time: datetime.datetime = time_opt
         msg: str = row[2]
 
         print(time, msg)
