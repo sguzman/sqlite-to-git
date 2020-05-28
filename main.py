@@ -21,7 +21,10 @@ def main() -> None:
 
         msg: str = row[2]
 
-        print(time, msg)
+        msg = msg.replace('"', "'")
+        msg = msg.strip()
+        git_str: str = f'git commit --allow-empty --date "{time} 0700" --message "{msg}"'
+        print(git_str)
 
 
 if __name__ == '__main__':
